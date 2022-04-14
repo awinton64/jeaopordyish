@@ -3,6 +3,10 @@
     <head>
         <title>Jeopardyish</title>
         <style>
+            .screenContainer {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
             .gridContainer {
                 display: grid;
                 grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -55,72 +59,84 @@
             }
 
             .versionButtonContainer {
-                display: grid;
-                grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-                margin: 1.66%;
+                display: flex;
+
             }
 
             .versionButton {
-                margin: 1.66%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 80%;
+                flex: 1 1;  
+                font-size: x-large;  
+                background-color: #000000;
+                color: #FFFFFF;
+                padding: 10px;
+                border-radius: 10px;
+                -moz-border-radius: 10px;
+                -webkit-border-radius: 10px;
+                margin:10px
             }
         </style>
     </head>
-        
-    <div>
-        <h1>Jeopardyish @ Winton's World</h1>
-        <h2>How to start?</h2>
-        <ol>
-            <li>Select a version that the group wants to play.</li>
-            <li>Take turns going around the room, choosing a category (column) and level (row).</li>
-            <li>If you do the card correctly, give the level’s corresponding drink to whomever you want.</li>
-            <li>If you don’t want to do the card then drink the corresponding amount of the level chosen.</li>
-            <li>Play responsibly and have fun!</li>
-        </ol>
-        <p>**refresh your screen before you want to play another version**</p>
-        <div class="versionButtonContainer">
-            <button id="v1" class="versionButton" onclick="versionClicked('forAll')">Version: For all</button>
-            <!-- <button id="v2" class="versionButton" onclick="versionClicked('forCouples')">Version: For couples</button> -->
-            <button id="v3" class="versionButton" onclick="versionClicked('forOldFriendGroups')">Version: For old friend groups</button>
-
-            <!-- <button id="v4" class="versionButton">V4 coming soon</button>
-            <button id="v5" class="versionButton">V5 coming soon</button>
-            <button id="v6" class="versionButton">V6 coming soon</button> -->
+    <div class="screenContainer">
+        <div>
+            <h1>Jeopardyish @ Winton's World</h1>
+            <h2>How to start?</h2>
+            <ol>
+                <li>Select a version that the group wants to play.</li>
+                <li>Take turns going around the room, choosing a category (column) and level (row).</li>
+                <li>If you do the card correctly, give the level’s corresponding drink to whomever you want.</li>
+                <li>If you don’t want to do the card then drink the corresponding amount of the level chosen.</li>
+                <li>Play responsibly and have fun!</li>
+            </ol>
+            <p>**refresh your screen before you want to play another version**</p>
+            <div class="versionButtonContainer">
+                <button id="v1" class="versionButton" onclick="versionClicked('forAll')">Version: For all</button>
+                <!-- <button id="v2" class="versionButton" onclick="versionClicked('forCouples')">Version: For couples</button> -->
+                <button id="v3" class="versionButton" onclick="versionClicked('forOldFriendGroups')">Version: For old friend groups</button>
+    
+                <!-- <button id="v4" class="versionButton">V4 coming soon</button>
+                <button id="v5" class="versionButton">V5 coming soon</button>
+                <button id="v6" class="versionButton">V6 coming soon</button> -->
+            </div>
         </div>
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <div class="gridContainer">
-            <div id="1x1" class="box oneXone">Jeopardy-ish</div>
-
-            <div id="1x2" class="box catagory">Catagory One</div>
-            <div id="1x3" class="box catagory">Catagory Two</div>
-            <div id="1x4" class="box catagory">Catagory Three</div>
-            <div id="1x5" class="box catagory">Catagory Four</div>
-
-            <div id="2x1" class="box level">Three Sips</div>
-            <div id="2x2" class="box">Card</div>
-            <div id="2x3" class="box">Card</div>
-            <div id="2x4" class="box">Card</div>
-            <div id="2x5" class="box">Card</div>
-
-            <div id="3x1" class="box level">Four Sips</div>
-            <div id="3x2" class="box">Card</div>
-            <div id="3x3" class="box">Card</div>
-            <div id="3x4" class="box">Card</div>
-            <div id="3x5" class="box">Card</div>
-
-            <div id="4x1" class="box level">Shot</div>
-            <div id="4x2" class="box" >Card</div>
-            <div id="4x3" class="box">Card</div>
-            <div id="4x4" class="box">Card</div>
-            <div id="4x5" class="box">Card</div>
-
-            <div id="5x1" class="box level">Shotgun</div>
-            <div id="5x2" class="box">Card</div>
-            <div id="5x3" class="box">Card</div>
-            <div id="5x4" class="box">Card</div>
-            <div id="5x5" class="box">Card</div>
-        </div>
-        <div id="cardDescription" class="cardDescription">Select a version to begin!</div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            <div class="gridContainer">
+                <div id="1x1" class="box oneXone">Jeopardy-ish</div>
+    
+                <div id="1x2" class="box catagory">Catagory One</div>
+                <div id="1x3" class="box catagory">Catagory Two</div>
+                <div id="1x4" class="box catagory">Catagory Three</div>
+                <div id="1x5" class="box catagory">Catagory Four</div>
+    
+                <div id="2x1" class="box level">Three Sips</div>
+                <div id="2x2" class="box">Card</div>
+                <div id="2x3" class="box">Card</div>
+                <div id="2x4" class="box">Card</div>
+                <div id="2x5" class="box">Card</div>
+    
+                <div id="3x1" class="box level">Four Sips</div>
+                <div id="3x2" class="box">Card</div>
+                <div id="3x3" class="box">Card</div>
+                <div id="3x4" class="box">Card</div>
+                <div id="3x5" class="box">Card</div>
+    
+                <div id="4x1" class="box level">Shot</div>
+                <div id="4x2" class="box" >Card</div>
+                <div id="4x3" class="box">Card</div>
+                <div id="4x4" class="box">Card</div>
+                <div id="4x5" class="box">Card</div>
+    
+                <div id="5x1" class="box level">Shotgun</div>
+                <div id="5x2" class="box">Card</div>
+                <div id="5x3" class="box">Card</div>
+                <div id="5x4" class="box">Card</div>
+                <div id="5x5" class="box">Card</div>
+            </div>
+            <div id="cardDescription" class="cardDescription">Select a version to begin!</div>
+    </div>    
     <body>
 
     </body>
