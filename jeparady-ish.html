@@ -25,10 +25,6 @@
                 font-size: x-large;
             }
 
-            .color {
-                background-color: #30475e;
-            }
-
             .greyBox {
                 background-color: #e8e8e8;
             }
@@ -94,10 +90,10 @@
             <p>**refresh your screen before you want to play another version**</p>
             <div class="versionButtonContainer">
                 <!-- <button class="versionButton" onclick="versionClicked('forAll')">Version: For all</button> -->
-                <button class="versionButton" onclick="versionClicked('forCouples')">Version: Couples</button>
-                <button class="versionButton" onclick="versionClicked('forOldFriendGroups')">Version: Old Friends</button>
-                <button class="versionButton" onclick="versionClicked('forNewFriendGroups')">Version: New Friends</button>
-                <button class="versionButton" onclick="versionClicked('forFamily')">Version: Family</button>
+                <button class="versionButton" onclick="versionClicked('Couples')">Version: Couples</button>
+                <button class="versionButton" onclick="versionClicked('Old Friends')">Version: Old Friends</button>
+                <button class="versionButton" onclick="versionClicked('New Friends')">Version: New Friends</button>
+                <button class="versionButton" onclick="versionClicked('Family')">Version: Family</button>
             </div>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -194,19 +190,19 @@
                 var description = gameContent.version1[boxNumber][Math.floor(Math.random() * gameContent.version1[boxNumber].length)]
                 cardDescription.innerHTML = "Your card: " + description
                 boxNumberAlreadyClicked.push(boxNumber)
-            } else if (versionId == "forCouples") {
+            } else if (versionId == "Couples") {
                 var description = gameContent.version2[boxNumber][Math.floor(Math.random() * gameContent.version2[boxNumber].length)]
                 cardDescription.innerHTML = "Your card: " + description
                 boxNumberAlreadyClicked.push(boxNumber)
-            } else if (versionId == "forOldFriendGroups") {
+            } else if (versionId == "Old Friends") {
                 var description = gameContent.version3[boxNumber][Math.floor(Math.random() * gameContent.version3[boxNumber].length)]
                 cardDescription.innerHTML = "Your card: " + description
                 boxNumberAlreadyClicked.push(boxNumber)
-            } else if (versionId == "forNewFriendGroups") {
+            } else if (versionId == "New Friends") {
                 var description = gameContent.version3[boxNumber][Math.floor(Math.random() * gameContent.version4[boxNumber].length)]
                 cardDescription.innerHTML = "Your card: " + description
                 boxNumberAlreadyClicked.push(boxNumber)
-            } else if (versionId == "forFamily") {
+            } else if (versionId == "Family") {
                 var description = gameContent.version3[boxNumber][Math.floor(Math.random() * gameContent.version5[boxNumber].length)]
                 cardDescription.innerHTML = "Your card: " + description
                 boxNumberAlreadyClicked.push(boxNumber)
@@ -261,28 +257,28 @@
                 catagory4Ele.innerHTML = gameContent.version1[5]
                 cardDescription.innerHTML = versionId
 
-            } else if (selectedVersionId === "forCouples") {
+            } else if (selectedVersionId === "Couples") {
                 catagory1Ele.innerHTML = gameContent.version2[2]
                 catagory2Ele.innerHTML = gameContent.version2[3]
                 catagory3Ele.innerHTML = gameContent.version2[4]
                 catagory4Ele.innerHTML = gameContent.version2[5]
                 cardDescription.innerHTML = versionId
 
-            } else if (selectedVersionId === "forOldFriendGroups") {
+            } else if (selectedVersionId === "Old Friends") {
                 catagory1Ele.innerHTML = gameContent.version3[2]
                 catagory2Ele.innerHTML = gameContent.version3[3]
                 catagory3Ele.innerHTML = gameContent.version3[4]
                 catagory4Ele.innerHTML = gameContent.version3[5]
                 cardDescription.innerHTML = versionId
 
-            } else if (selectedVersionId === "forNewFriendGroups") {
+            } else if (selectedVersionId === "New Friends") {
                 catagory1Ele.innerHTML = gameContent.version4[2]
                 catagory2Ele.innerHTML = gameContent.version4[3]
                 catagory3Ele.innerHTML = gameContent.version4[4]
                 catagory4Ele.innerHTML = gameContent.version4[5]
                 cardDescription.innerHTML = versionId
          
-            } else if (selectedVersionId === "forFamily") {
+            } else if (selectedVersionId === "Family") {
                 catagory1Ele.innerHTML = gameContent.version5[2]
                 catagory2Ele.innerHTML = gameContent.version5[3]
                 catagory3Ele.innerHTML = gameContent.version5[4]
@@ -292,8 +288,6 @@
             } else {
                 console.log("error: version key not selected")
             }
-            
-
 
             // Adding card names
             level1Catagory1Ele.innerHTML = selectedVersionId
@@ -321,7 +315,7 @@
         var gameContent = {
 
             version2: {
-                1: "forCouples",
+                1: "Couples",
                 2: ["Sexy Time"],
                 3: ["Guess That Couple!"],
                 4: ["Couple Knowledge"],
@@ -353,7 +347,7 @@
             },
 
             version3: {
-                1: "forOldFriendGroups",
+                1: "Old Friends",
                 2: ["Drinking"],
                 3: ["Be A Freshman"],
                 4: ["Blast From The Past"],
@@ -385,7 +379,7 @@
             },
 
             version4: {
-                1: "forNewFriendGroups",
+                1: "New Friends",
                 2: ["Secrets"],
                 3: ["Acting"],
                 4: ["Blank Checks"],
@@ -417,7 +411,7 @@
             },
 
             version5: {
-                1: "forFamily",
+                1: "Family",
                 2: ["Story time"],
                 3: ["Experience"],
                 4: ["Gratitude"],
