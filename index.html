@@ -15,18 +15,18 @@
             }
 
             .box {
-                /* float:left; */
                 position: relative;
-                /* width: 30%; */
                 padding-top: 15%;
                 padding-bottom: 15%;
-                /* padding-bottom : 30%; = width for a 1:1 aspect ratio */
-                
                 background-color:#30475e;
-                /* overflow:hidden; */
                 text-align: center;
                 margin:1.66%;
                 color: white;
+                font-size: x-large;
+            }
+
+            .color {
+                background-color: #30475e;
             }
 
             .greyBox {
@@ -48,7 +48,7 @@
 
             .cardDescription {
                 color: white;
-                font-size: xx-large;
+                font-size: xxx-large;
                 position: relative;
                 padding-top: 15%;
                 padding-bottom: 15%;
@@ -87,19 +87,17 @@
             <ol>
                 <li>Select a version that the group wants to play.</li>
                 <li>Take turns going around the room, choosing a category (column) and level (row).</li>
-                <li>If you do the card correctly, give the level’s corresponding drink to whomever you want.</li>
+                <li>If you complete the card, give the level’s corresponding drink to whomever you want.</li>
                 <li>If you don’t want to do the card then drink the corresponding amount of the level chosen.</li>
                 <li>Play responsibly and have fun!</li>
             </ol>
             <p>**refresh your screen before you want to play another version**</p>
             <div class="versionButtonContainer">
-                <button id="v1" class="versionButton" onclick="versionClicked('forAll')">Version: For all</button>
-                <!-- <button id="v2" class="versionButton" onclick="versionClicked('forCouples')">Version: For couples</button> -->
-                <button id="v3" class="versionButton" onclick="versionClicked('forOldFriendGroups')">Version: For old friend groups</button>
-    
-                <!-- <button id="v4" class="versionButton">V4 coming soon</button>
-                <button id="v5" class="versionButton">V5 coming soon</button>
-                <button id="v6" class="versionButton">V6 coming soon</button> -->
+                <!-- <button class="versionButton" onclick="versionClicked('forAll')">Version: For all</button> -->
+                <button class="versionButton" onclick="versionClicked('forCouples')">Version: Couples</button>
+                <button class="versionButton" onclick="versionClicked('forOldFriendGroups')">Version: Old Friends</button>
+                <button class="versionButton" onclick="versionClicked('forNewFriendGroups')">Version: New Friends</button>
+                <button class="versionButton" onclick="versionClicked('forFamily')">Version: Family</button>
             </div>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -136,6 +134,7 @@
                 <div id="5x5" class="box">Card</div>
             </div>
             <div id="cardDescription" class="cardDescription">Select a version to begin!</div>
+            
     </div>    
     <body>
 
@@ -176,7 +175,6 @@
         var level2Catagory4Ele = document.getElementById("3x5")
         var level3Catagory4Ele = document.getElementById("4x5")
         var level4Catagory4Ele = document.getElementById("5x5")
-
         
         $('.gridContainer').find('div').click( function(){
             var boxNumber = ($(this).index()+1)
@@ -204,9 +202,17 @@
                 var description = gameContent.version3[boxNumber][Math.floor(Math.random() * gameContent.version3[boxNumber].length)]
                 cardDescription.innerHTML = "Your card: " + description
                 boxNumberAlreadyClicked.push(boxNumber)
+            } else if (versionId == "forNewFriendGroups") {
+                var description = gameContent.version3[boxNumber][Math.floor(Math.random() * gameContent.version4[boxNumber].length)]
+                cardDescription.innerHTML = "Your card: " + description
+                boxNumberAlreadyClicked.push(boxNumber)
+            } else if (versionId == "forFamily") {
+                var description = gameContent.version3[boxNumber][Math.floor(Math.random() * gameContent.version5[boxNumber].length)]
+                cardDescription.innerHTML = "Your card: " + description
+                boxNumberAlreadyClicked.push(boxNumber)
             } else {
-                cardDescription.innerHTML = "Wanna play? Click a version button below to start!"
-                console.log("noVersion Selected")
+                cardDescription.innerHTML = "Wanna play? Click a version to start!"
+                console.log("No Version Selected")
             }
         }
 
@@ -237,18 +243,14 @@
             }
         }
 
-        function addMyClass() {
-            var classString = this.className; // returns the string of all the classes for myDiv
-            var newClass = classString.concat("greyBox"); // Adds the class "main__section" to the string (notice the leading space)
-            this.className = newClass; // sets className to the new string
-        }
+        // function addMyClass() {
+        //     var classString = this.className; // returns the string of all the classes for myDiv
+        //     var newClass = classString.concat("greyBox"); // Adds the class "main__section" to the string (notice the leading space)
+        //     this.className = newClass; // sets className to the new string
+        // }
 
         function versionClicked(selectedVersionId) {
-
-            console.log(selectedVersionId)
-
             versionId = selectedVersionId
-
 
             //thingToImprove figure out how to pass a paramater from the onclick funciton to make the version# variable depeding on the version clicked.
             // Update catagory names based on version clicked
@@ -271,6 +273,20 @@
                 catagory2Ele.innerHTML = gameContent.version3[3]
                 catagory3Ele.innerHTML = gameContent.version3[4]
                 catagory4Ele.innerHTML = gameContent.version3[5]
+                cardDescription.innerHTML = versionId
+
+            } else if (selectedVersionId === "forNewFriendGroups") {
+                catagory1Ele.innerHTML = gameContent.version4[2]
+                catagory2Ele.innerHTML = gameContent.version4[3]
+                catagory3Ele.innerHTML = gameContent.version4[4]
+                catagory4Ele.innerHTML = gameContent.version4[5]
+                cardDescription.innerHTML = versionId
+         
+            } else if (selectedVersionId === "forFamily") {
+                catagory1Ele.innerHTML = gameContent.version5[2]
+                catagory2Ele.innerHTML = gameContent.version5[3]
+                catagory3Ele.innerHTML = gameContent.version5[4]
+                catagory4Ele.innerHTML = gameContent.version5[5]
                 cardDescription.innerHTML = versionId
 
             } else {
@@ -303,66 +319,37 @@
 
 
         var gameContent = {
-            version1: {
-                1: "forAll",
-                2: ["Experience"],
-                3: ["Drinking"],
-                4: ["Acting Dumb"],
-                5: ["Knowledge"],
-                6: ["What'd you click me for? I'm a level not a card. Take a sip of your drink dum-dum :)"], //Level
-                7: ["Weirdest place you’ve had sex?","Describe the worst and best head?","Best and worst place you’ve had sex?","What’s the weirdest thing a girl has said to you during sex?"], // Catagory 1
-                8: ["Give and take a sip with the person who has the closest birthday to you.", "Make a rule but everytime some breaks your rule you must drink."], // Catagory 2
-                9: ["Give the guy to the right of you $1","Pushup challenge someone from the room (loser taker a shot)"], // Catagory 3
-                10: ["Who’s the oldest and youngest in the room?"], // Catagory 4
-                11: ["you sily goose that's a level not a card. Take a shot for being so silly :)"], //Level
-                12: ["Name your fetish?","Cringiest thing you have done/said during sex","What’s your weirdest sexual fantasy?"], // Catagory 1
-                13: ["Create two cocktails. Drink one. Share one.", "Kneel down and open your mouth for 5 secs and drink hard liquor", "Spin a bottle to select who finishes their drink"],
-                14: ["Scream a selected word by the group","Receive wet willy"],
-                15: ["Guess two body count right in the room", "Guess the person who’s has/had the longest relationship"],
-                16: ["Who dare pick me over a card. For now you must take a shot and give a shot :)"], //Level
-                17: ["FMK in the room"], // Catagory 1
-                18: ["Rock paper scissors, loser takes a shot", "Wheelbarrow shotgun"],
-                19: ["Suck on someone’s nipple", "Text current crush risky message", "Send nude", "Text estranged friend 'I love you'","Receive a wedgie for 3 seconds from a chosen person"],
-                20: ["Guess the person who’s has/had the longest relationship"],
-                21: ["YO Num-nuts! I ain't a card. Pick something else :/"], //Level
-                22: ["Describe how you would have sex with a person in this room?"], // Catagory 1
-                23: ["Shotgun in 15 secs", "Butt chug 3 secs"],
-                24: ["Naked lap", "Call your mom", "Booblooge off someone in the room", "Receive a nipple twist from someone in the room", "Call your ex on speaker"],
-                25: ["Name all of the people in the room who have cheated on someone"]
-            },
 
             version2: {
                 1: "forCouples",
-                2: ["Partner Knowledge"],
-                3: ["Drinking"],
-                4: ["Acting Dumb"],
-                5: ["Group Knowledge"],
+                2: ["Sexy Time"],
+                3: ["Guess That Couple!"],
+                4: ["Couple Knowledge"],
+                5: ["Challenge"],
 
                 6: ["What'd you click me for? I'm a level not a card. Take a sip of your drink dum-dum :)"], //Level 1 catagories
-                7: ["What is your partner's favorite color? Both people write it down and on the count of three share and see if it matches", "What’s your partner’s favorite color combination? Both people write it down and on the count of three share and see if it matches" ],
-                8: ["Give and take a sip with the person who has the closest birthday to you.", "Make a rule but everytime some breaks your rule you must drink."],
-                9: ["Give your partner $1"],
-                10: ["Who’s the oldest and youngest in the room?"],
+                7: ["Tell us the story of your first kiss. Who made the first move?"],
+                8: ["Guess the person who’s has/had the longest relationship. If you guess correctly, pass out the corresponding level of drink(s)."],
+                9: ["What’s your partner’s zodiac sign (eg. Virgo)? Both people write it down and on the count of three share and see if it matches."],
+                10: ["Pattycake with your partner against another pair of partners. First one to go 6 cycles without messing up wins. If you win, pass out the corresponding level of drink(s)."],
 
                 11: ["you sily goose that's a level not a card. Take a shot for being so silly :)"], //Level 2 catagories
-                12: ["Does your partner have any fetish, yes or no? Both people write it down and on the count of three share and see if it matches", "What’s your partner’s zodiac sign (eg. Virgo)? Both people write it down and on the count of three share and see if it matches"],
-                13: ["Create four cocktails. 2 for you and your partner. 2 for another set of partners.", "Kneel down and open your mouth for 5 secs and drink hard liquor", "Spin a bottle to select the partners who will finish their drink"],
-                14: ["Receive wet willies from two other partners.", "Partner 2 truths and a lie. The rest of the partners in the game guess. If the lie is not guessed the partners who created the lie pass out 2 shots."],
-                15: ["Guess the person who’s has/had the longest relationship"],
+                12: ["Drink the number of times you have had sex today with your partner."],
+                13: ["Guess the couple most likely to disappear during the pregame for “unknown” reasons. Group votes to decide if it’s accurate. If you guess correctly, pass out the corresponding level of drink(s)."],
+                14: ["Partner’s dream job? Both people write it down and on the count of three share and see if it matches."],
+                15: ["Pattycake with your partner against another pair of partners. First one to go 6 cycles without messing up wins. If you win, pass out the corresponding level of drink(s)."],
 
-
-                // let off here need to make the changes below
                 16: ["Who dare pick me over a card. For now you must take a shot and give a shot :)"], //Level 3 catagories
-                17: ["What’s your partner’s birthday? Both people write it down and on the count of three share and see if it matches.", "Partner’s dream job? Both people write it down and on the count of three share and see if it matches."],
-                18: ["Rock paper scissors your partner. Losing partner takes a shot.", "Buy your partner a drink if you go out (expires the night at 12:30 AM). In the meantime take a half shot."],
-                19: ["Partners body seltzer roll. Losing partners take a shot.", "Patty cake with your partner against another pair of partners. First one to go 6 cycles without messing up wins. Losing team takes 2 shots for the level."],
-                20: ["Guess the person who’s has/had the longest relationship (doesn’t have to be the one they are or aren't in)"],
+                17: ["Share a story about a time when y'all were walked in on."],
+                18: ["Which couple would be most likely to be mistaken for siblings. Group votes to decide if it’s accurate. If you guess correctly, pass out the corresponding level of drink(s)."],
+                19: ["Does your partner have any fetish, yes or no? Both people write it down and on the count of three share and see if it matches."], 
+                20: ["Staring contest. You and another couple enter into a duel staring contest. Group picks the second couple.. First couple to break eye contact drinks the corresponding level of drink(s)."],
 
                 21: ["YO Num-nuts! I ain't a card. Pick something else :/"], //Level 4 catagories
-                22: ["What is your partners bucket list spot to have sex? Both people write it down and on the count of three share and see if it matches."], 
-                23: ["Shotgun in 8 secs.", "Butt chug 3 secs or give your partner a 3 sec kiss (your welcome)"],
-                24: ["Call either of your parents on speaker"],
-                25: ["Couple most likely to disappear during the pregame for **nknown** reasons. Group vote to decide if it’s accurate"]
+                22: ["What would you or have you role played together?"],
+                23: ["Guess the couple who is most likely to be dependent on one of their parents financially. Group votes to decide if it’s accurate. If you guess correctly, pass out the corresponding level of drink(s)."],
+                24: ["What is your partners bucket list spot to have sex? Both people write it down and on the count of three share and see if it matches."],
+                25: ["Hold a challenging yoga sex poistion against a couple of the group’s choosing. Group decides the position. Couple who can hold the longest pass out the corresponding level of drink(s). 1 min max."],
             },
 
             version3: {
@@ -384,8 +371,6 @@
                 14: ["FMK based on three chosen people within the room by the group.", "Take a sip for each person you have hooked up (first base or farther) with in the room."],
                 15: ["Guess everyone’s body count in the room."],
 
-
-                // let off here need to make the changes below
                 16: ["Who dare pick me over a card. For now you must take a shot and give a shot :)"], //Level 3 catagories
                 17: ["Pick a person. Both of you finish your drinks.", "Rock paper scissor with the entire group at the same time. Take a sip for every person who beats you."],
                 18: ["7 mins in heaven but the group gets to decided who will join you."],
@@ -397,7 +382,72 @@
                 23: ["Let someone cut a small piece of your hair and tape it to your face as facial hair for the rest of the night."],
                 24: ["Call your parents and ask them for the story of when you were conceived (put on speaker phone)."],
                 25: ["Go around the room and guess for each person who they would be willing to hook up with in the room."],
-            }
+            },
+
+            version4: {
+                1: "forNewFriendGroups",
+                2: ["Secrets"],
+                3: ["Acting"],
+                4: ["Blank Checks"],
+                5: ["Common Knowledge?"],
+
+                6: ["What'd you click me for? I'm a level not a card. Take a sip of your drink dum-dum :)"], //Level 1 catagories
+                7: ["Share the last time you told a white lie."],
+                8: ["Bust out your go to party dance move with someone else in the room (group decides other person)."],
+                9: ["Give 3 people a meaningful compliment while stare them in the eyes."],
+                10: ["Share a piece of advice your dad has given you. See if anyone else has received the same advice."],
+
+                11: ["you sily goose that's a level not a card. Take a shot for being so silly :)"], //Level 2 catagories
+                12: ["Share a phobia or something you're scared of."],
+                13: ["Sing your favorite song, rap, or original if you’re feeling ballzy."],
+                14: ["Give 2 you know the least a hug."],
+                15: ["Make an animal noise, and see if anyone can guess it."],
+
+                16: ["Who dare pick me over a card. For now you must take a shot and give a shot :)"], //Level 3 catagories
+                17: ["Are you emotionally available right now?"],
+                18: ["Propose to someone in the room with a speech."],
+                19: ["Who are three people you’d pick to be on a deserted island with?"], 
+                20: ["Do an impression, and see how many people recognize it."],
+
+                21: ["YO Num-nuts! I ain't a card. Pick something else :/"], //Level 4 catagories
+                22: ["Tell us about your first love."],
+                23: ["Give birth with someone else in the room?"],
+                24: ["Set up a lunch date for within the next two weeks. Group decides the other person to go to lunch."],
+                25: ["Reference your favorite meme/tik-tok or even Vine (if you know you know), and see how many people know it."],
+            },
+
+            version5: {
+                1: "forFamily",
+                2: ["Story time"],
+                3: ["Experience"],
+                4: ["Gratitude"],
+                5: ["Tradition"],
+
+                6: ["What'd you click me for? I'm a level not a card. Take a sip of your drink dum-dum :)"], //Level 1 catagories
+                7: ["Share a story when someone in the family scared you to death. OR. Share a story when you felt uneasy. What grounded you?"],
+                8: ["Tell us something on your bucket list."],
+                9: ["Share a time where you were facing a difficult time and a family member helped you out."],
+                10: ["Share something you hope your children will pass on and/or you want to pass on from your parents."],
+
+                11: ["you sily goose that's a level not a card. Take a shot for being so silly :)"], //Level 2 catagories
+                12: ["Share a story about an embarrassing or happy moment."],
+                13: ["Tell us about a time you had an unplanned experience but you’ll never forget."],
+                14: ["Share a time and show your appreciation for a family member who has helped you to where you are now."],
+                15: ["Share a story about a time you used a family tradition to grow closer with someone else outside of the family."],
+
+                16: ["Who dare pick me over a card. For now you must take a shot and give a shot :)"], //Level 3 catagories
+                17: ["Share a story when someone came in the clutch?"],
+                18: ["Share a story from a trip you would take again."],
+                19: ["Share a time and show your appreciation when someone gave you a good piece of advice."], 
+                20: ["Tell us about a tradition you want to build upon and improve upon."],
+
+                21: ["YO Num-nuts! I ain't a card. Pick something else :/"], //Level 4 catagories
+                22: ["Share a time where you knew you were in the wrong place and/or realized you needed a change."],
+                23: ["Tell us about a time where music was an integral part of the experience."],
+                24: ["Tell us a time when you wished you had shown more appreciation."],
+                25: ["Share a time where someone made you proud to be a part of this family."],
+            },
+
         }
 
 
@@ -420,8 +470,6 @@
         //         14: [],
         //         15: [],
 
-
-        //         // let off here need to make the changes below
         //         16: ["Who dare pick me over a card. For now you must take a shot and give a shot :)"], //Level 3 catagories
         //         17: [],
         //         18: [],
@@ -440,3 +488,32 @@
     </script>
 
 </html>
+
+
+<!-- version1: {
+    1: "forAll",
+    2: ["Experience"],
+    3: ["Drinking"],
+    4: ["Acting Dumb"],
+    5: ["Knowledge"],
+    6: ["What'd you click me for? I'm a level not a card. Take a sip of your drink dum-dum :)"], //Level
+    7: ["Weirdest place you’ve had sex?","Describe the worst and best head?","Best and worst place you’ve had sex?","What’s the weirdest thing a girl has said to you during sex?"], // Catagory 1
+    8: ["Give and take a sip with the person who has the closest birthday to you.", "Make a rule but everytime some breaks your rule you must drink."], // Catagory 2
+    9: ["Give the guy to the right of you $1","Pushup challenge someone from the room (loser taker a shot)"], // Catagory 3
+    10: ["Who’s the oldest and youngest in the room?"], // Catagory 4
+    11: ["you sily goose that's a level not a card. Take a shot for being so silly :)"], //Level
+    12: ["Name your fetish?","Cringiest thing you have done/said during sex","What’s your weirdest sexual fantasy?"], // Catagory 1
+    13: ["Create two cocktails. Drink one. Share one.", "Kneel down and open your mouth for 5 secs and drink hard liquor", "Spin a bottle to select who finishes their drink"],
+    14: ["Scream a selected word by the group","Receive wet willy"],
+    15: ["Guess two body count right in the room", "Guess the person who’s has/had the longest relationship"],
+    16: ["Who dare pick me over a card. For now you must take a shot and give a shot :)"], //Level
+    17: ["FMK in the room"], // Catagory 1
+    18: ["Rock paper scissors, loser takes a shot", "Wheelbarrow shotgun"],
+    19: ["Suck on someone’s nipple", "Text current crush risky message", "Send nude", "Text estranged friend 'I love you'","Receive a wedgie for 3 seconds from a chosen person"],
+    20: ["Guess the person who’s has/had the longest relationship"],
+    21: ["YO Num-nuts! I ain't a card. Pick something else :/"], //Level
+    22: ["Describe how you would have sex with a person in this room?"], // Catagory 1
+    23: ["Shotgun in 15 secs", "Butt chug 3 secs"],
+    24: ["Naked lap", "Call your mom", "Booblooge off someone in the room", "Receive a nipple twist from someone in the room", "Call your ex on speaker"],
+    25: ["Name all of the people in the room who have cheated on someone"]
+}, -->
